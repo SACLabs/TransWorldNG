@@ -1,7 +1,7 @@
 """
-transworld base module.
+tsim base module.
 
-This is the principal module of the transworld project.
+This is the principal module of the tsim project.
 here you put your main classes and objects.
 
 Be creative! do whatever you want!
@@ -14,4 +14,4 @@ and then choose `flask` as template.
 """
 
 # example constant variable
-NAME = "transworld"
+NAME = "tsim"
