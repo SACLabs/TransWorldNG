@@ -1,13 +1,18 @@
 
-# Python Project Template
+# Transworld
 
-A low dependency and really simple to start project template for Python Projects.
+TransWorld NG: Empower Traffic Simulation via AIGC
 
-See also 
-- [Flask-Project-Template](https://github.com/rochacbruno/flask-project-template/) for a full feature Flask project including database, API, admin interface, etc.
-- [FastAPI-Project-Template](https://github.com/rochacbruno/fastapi-project-template/) The base to start an openapi project featuring: SQLModel, Typer, FastAPI, JWT Token Auth, Interactive Shell, Management Commands.
+Transworld 2.0 is a data-driven and multiscale traffic simulation model that leverages the power of AIGC (Artificial Intelligence and Graph Computing) techniques to simulate complex traffic behavior and relationships.
 
-### HOW TO USE THIS TEMPLATE
+Checkout these features!
+
+1. A unified and adaptable data description structure to model diverse agents and various relationships in complex traffic systems.
+2. A heterogeneous graph learning framework that automates the generation of the behavior models by incorporating diverse and complex traffic data. 
+3. Multi-scale traffic simulation framework with adaptive scaling capabilit that allows modeling the temporal and spatial complexity of traffic systems at multi-scales. 
+
+
+### Overview
 
 > **DO NOT FORK** this is meant to be used from **[Use this template](https://github.com/rochacbruno/python-project-template/generate)** feature.
 
