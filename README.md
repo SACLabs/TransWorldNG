@@ -1,5 +1,5 @@
 
-# TransworldNG
+# TransWorldNG
 
 TransWorldNG: Empower Traffic Simulation via Foundation Model
 
