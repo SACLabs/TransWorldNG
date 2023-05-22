@@ -3,7 +3,7 @@
 
 TransWorldNG: Empower Traffic Simulation via Foundation Model
 
-Transworld 2.0 is a data-driven and multiscale traffic simulation model that leverages the power of foundation model to simulate complex traffic behavior and relationships.
+TransWorldNG is a data-driven and multiscale traffic simulation model that leverages the power of foundation model to simulate complex traffic behavior and relationships.
 
 Checkout these features!
 
