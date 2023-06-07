@@ -37,7 +37,6 @@ def get_veh_next_lane(
     else:
         return None
 
-
 def post_actions(
     node_names: List[str], struc_dict: Dict, feat_dict: Dict, veh_route: Dict
 ) -> Dict:  # return action: ["node_name","add_edge(veh1,on,lane1)"]

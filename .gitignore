@@ -130,3 +130,6 @@ dmypy.json
 
 # templates
 .github/templates/*
+
+/experiment/traci_tls/data
+/experiment/bologna_clean/data

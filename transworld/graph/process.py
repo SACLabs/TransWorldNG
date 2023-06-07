@@ -34,7 +34,7 @@ def generate_graph_dict(edge_Data: pd.DataFrame, start_step, end_step) -> Dict:
 
     for k, v in g_dict.items():
         tensor_ = torch.cat([t.unsqueeze(1) for t in v], dim=1)
-        g_dict[k] = (tensor_[0], tensor_[1], tensor_[2])
+        g_dict[k] = (tensor_[0].long(), tensor_[1].long(), tensor_[2].long())
     return g_dict
 
 

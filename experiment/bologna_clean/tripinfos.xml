@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2022-10-25 10:18:52 by Eclipse SUMO GUI Version 1.14.1
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="D:\GitProjects\tsim\Experiment\bologna-clean\clean.net.xml"/>
+        <route-files value="D:\GitProjects\tsim\Experiment\bologna-clean\joined.rou.xml"/>
+        <additional-files value="D:\GitProjects\tsim\Experiment\bologna-clean\joined_detectors.add.xml,D:\GitProjects\tsim\Experiment\bologna-clean\joined_vtypes.add.xml,D:\GitProjects\tsim\Experiment\bologna-clean\joined_tls.add.xml"/>
+    </input>
+
+    <output>
+        <tripinfo-output value="D:\GitProjects\tsim\Experiment\bologna-clean\tripinfos.xml"/>
+        <save-state.prefix value="D:\GitProjects\tsim\Experiment\bologna-clean\state"/>
+    </output>
+
+    <report>
+        <log value="D:\GitProjects\tsim\Experiment\bologna-clean\sumo_log.txt"/>
+        <no-step-log value="true"/>
+    </report>
+
+    <emissions>
+        <phemlight-path value="D:\GitProjects\tsim\Experiment\bologna-clean\./PHEMlight/"/>
+    </emissions>
+
+</configuration>
