@@ -3,13 +3,12 @@
 
 TransWorldNG: Empower Traffic Simulation via Foundation Model
 
-TransWorldNG is a data-driven and multiscale traffic simulation model that leverages the power of foundation model to simulate complex traffic behavior and relationships.
+TransWorldNG is a cutting-edge traffic simulation model that utilizes a foundation model to accurately model complex traffic behavior and relationships from real-world data.
 
-Checkout these features!
+Key features include:
 
-1. A unified and adaptable data description structure to model diverse agents and various relationships in complex traffic systems.
-2. A heterogeneous graph learning framework that automates the generation of the behavior models by incorporating diverse and complex traffic data. 
-3. Multi-scale traffic simulation framework with adaptive scaling capabilit that allows modeling the temporal and spatial complexity of traffic systems at multi-scales. 
+1. A unified and adaptable data structure for modeling diverse agents and relationships within complex traffic systems.
+2. A heterogeneous graph learning framework that automatically generates behavior models by learning from complex traffic data.
 
 
 # Citing TransWorldNG
