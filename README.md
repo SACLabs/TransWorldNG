@@ -34,7 +34,7 @@ Make sure you have all the necessary dependencies installed before running the a
 
 # Getting Started
 
-## Generating example data from SUMO
+## Generating example data with SUMO
 1. Navigate to transworldNG/experiment/gen_data.sh.
 2. Modify the gen_data.sh file to specify scenarios and parameters.
 3. Run gen_data.sh to generate data:
@@ -43,10 +43,10 @@ Make sure you have all the necessary dependencies installed before running the a
     ./gen_data.sh
     ```
 
-## Run TransWorldNG simulation
+## Running TransWorldNG simulation
 1. Navigate to transWorldNG/transworld/run.sh
 2. Modify the run.sh file to specify scenarios and parameters.
-3. Run the run.sh file. The results will be saved in the original data folder，or you can modify the settings in the transworld_exp.py.
+3. Run run.sh file. The results will be saved in the original data folder. Alternatively, you can modify the settings in transworld_exp.py.
     ```
     ./run.sh
     ```
