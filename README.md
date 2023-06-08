@@ -49,6 +49,5 @@ Make sure you have all the necessary dependencies installed before running the a
 3. Run the run.sh file:
     ```
     ./run.sh
-    ```
-  The results will be saved in the original data folder，or you can modify the settings in the transworld_exp.py.
+    ```The results will be saved in the original data folder，or you can modify the settings in the transworld_exp.py.
 
