@@ -193,7 +193,7 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
 
     optimizer = torch.optim.Adam(list(encoder.parameters())+list(generator.parameters()), lr=lr)
     
-    before = datetime.now()
+    
     
     loss_avg = []
     for ep in tqdm(range(n_epochs)):
@@ -210,7 +210,8 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     torch.save(encoder.state_dict(), out_dir / 'encorder.pth')
     torch.save(generator.state_dict(), out_dir / 'generator.pth')
     
-    
+    before = datetime.now()
+
     for i in range(10):
         logger.info(f"--------- current is {0+pred_step*(i+1), training_step+pred_step*(i+1)} --------")
         sim_graph = eval(graph, batch_size//num_workers, num_workers, encoder, generator, veh_depart, veh_route, changable_feature_names, hetero_feat_dim, logger, device, training_step+pred_step*(i+1), pred_step)
@@ -229,7 +230,7 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     after = datetime.now()
     time_diff.append((after - before).total_seconds())
     
-    logger.info(f"========== time_diff is : {(after - before).total_seconds()} ==========")
+    logger.info(f"========== Eval time_diff is : {(after - before).total_seconds()} ==========")
     logger.info("========== Exp has finished! ==========")
 
 

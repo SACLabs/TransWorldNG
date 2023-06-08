@@ -12,7 +12,7 @@ Checkout these features!
 3. Multi-scale traffic simulation framework with adaptive scaling capabilit that allows modeling the temporal and spatial complexity of traffic systems at multi-scales. 
 
 
-# Citing SMAC
+# Citing TransWorldNG
 
 If you use TransWorldNG in your research, please cite the paper.
 
@@ -20,12 +20,14 @@ Wang, D., Wang, X., Chen, L., Yao, S., Jing, M., Li, H., Li, L., Bao, S., Wang, 
 
 In BibTeX format:
 
+```
 @article{wang2023transworldng,
   title={TransWorldNG: Traffic Simulation via Foundation Model},
   author={Wang, Ding and Wang, Xuhong and Chen, Liang and Yao, Shengyue and Jing, Ming and Li, Honghai and Li, Li and Bao, Shiqiang and Wang, Fei-Yue and Lin, Yilun},
   journal={arXiv preprint arXiv:2305.15743},
   year={2023}
 }
+```
 
 # Environment
 Make sure you have all the necessary dependencies installed before running the above commands. You can install the dependencies by running `pip install -r requirements.txt`.
@@ -34,7 +36,7 @@ Make sure you have all the necessary dependencies installed before running the a
 # Getting Started
 
 ## Generating example data from SUMO
-1. Navigate to transworldNG/experiment/gen_data.
+1. Navigate to transworldNG/experiment/gen_data.sh.
 2. Modify the gen_data.sh file to specify scenarios and parameters.
 3. Run gen_data.sh to generate data:
     
@@ -42,5 +44,11 @@ Make sure you have all the necessary dependencies installed before running the a
     ./gen_data.sh
     ```
 
-You can run experiment/sumo_exp.py by using the following command:
+## Run TransWorldNG simulation
+1. Navigate to transWorldNG/transworld/run.sh
+2. Modify the run.sh file to specify scenarios and parameters.
+3. Run the run.sh file, the results will be saved in the original data folder:
+    ```
+    ./run.sh
+    ```
 
