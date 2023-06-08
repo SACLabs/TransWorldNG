@@ -46,8 +46,8 @@ Make sure you have all the necessary dependencies installed before running the a
 ## Run TransWorldNG simulation
 1. Navigate to transWorldNG/transworld/run.sh
 2. Modify the run.sh file to specify scenarios and parameters.
-3. Run the run.sh file:
+3. Run the run.sh file. The results will be saved in the original data folder，or you can modify the settings in the transworld_exp.py.
     ```
     ./run.sh
-    ```The results will be saved in the original data folder，or you can modify the settings in the transworld_exp.py.
+    ```
 
