@@ -94,12 +94,13 @@ def get_tlc_state(veh: str) -> Optional[int]:
     next_tls = traci.vehicle.getNextTLS(veh)
     if len(next_tls) > 0 and next_tls[0][-1] == "G":
         return 1
-    elif len(next_tls) > 0 and next_tls[0][-1] == "r":
+    if len(next_tls) > 0 and next_tls[0][-1] == "r":
         return -1
-    elif len(next_tls) > 0 and next_tls[0][-1] == "y":
+    elif len(next_tls) > 0 and next_tls[0][-1] == "s":
         return 0
     else:
         return 0
+
 
 
 def get_node_data(step: int, type: str, sources: List, operations: List) -> List:
@@ -114,7 +115,10 @@ def get_node_data(step: int, type: str, sources: List, operations: List) -> List
         ] 
         if type == "lane":
             operation_result[-1] = tuple(itertools.chain(*operation_result[-1]))
-        return_feats.append([step, element] + operation_result)
+
+        # if type == "tlc":
+        #     print(traci.trafficlight.getControlledLinks(element))
+        return_feats.append([step, element] + operation_result )
     return return_nodes, return_feats
 
 
@@ -122,12 +126,6 @@ def get_edge_data(step: int, relation: str, sources: List, operations: List) -> 
     return_edges = []
     for element in sources:
         if relation == "lane_to_lane":
-            # dest = [
-            #     operator(element)[0][0]
-            #     for operator in operations
-            #     if (len(operator(element)) > 0)
-            # ][0]
-            
             
             dest = [
                 operator(element)[0][0]
@@ -135,11 +133,35 @@ def get_edge_data(step: int, relation: str, sources: List, operations: List) -> 
                 if (len(operator(element)) > 0)
             ]
             
+            
             if dest!= []:
                 if type(dest) == list:
                     dest = dest[0]
                 return_edges.append([step, element, dest, "lane_phy/to_lane"])
                 return_edges.append([step, dest, element, "lane_phy/from_lane"])
+
+            # Check if the current lane is controlled by a traffic light
+            # lane_controlled = False
+            # tl_ids = traci.trafficlight.getIDList()
+            # for tl_id in tl_ids:
+            #     tl_lanes = traci.trafficlight.getControlledLanes(tl_id)
+            #     if element in tl_lanes:
+            #         lane_controlled = True
+            #         break
+            
+            # # If the current lane is not controlled by a traffic light, add it to the list of edges
+            # if not lane_controlled:
+            #     dest = [
+            #         operator(element)[0][0]
+            #         for operator in operations
+            #         if (len(operator(element)) > 0)
+            #     ]
+            #     if dest!= []:
+            #         if type(dest) == list:
+            #             dest = dest[0]
+            #         return_edges.append([step, element, dest, "lane_phy/to_lane"])
+            #         return_edges.append([step, dest, element, "lane_phy/from_lane"])
+        
         elif relation == "lane_belongs_road":
             dest = [
                 operator(element)
@@ -148,6 +170,7 @@ def get_edge_data(step: int, relation: str, sources: List, operations: List) -> 
             ][0]
             return_edges.append([step, element, dest, "lane_phy/to_road"])
             return_edges.append([step, dest, element, "road_phy/to_lane"])
+        
         elif relation == "tlc_to_lane":
             lanes = [
                 operator(element)
@@ -217,21 +240,33 @@ def _(data_entity, data_dir):
 
 
 def get_tlc_plan(tlc_id):
-    num_phase = len(traci.trafficlight.getAllProgramLogics(tlc_id)[0].phases)
+    # num_phase = len(traci.trafficlight.getAllProgramLogics(tlc_id)[0].phases)
+    program_logic = traci.trafficlight.getAllProgramLogics(tlc_id)[0]
+    num_phase = len(program_logic.phases)
+    controlled_links = traci.trafficlight.getControlledLinks(tlc_id)
+    inbound_lst = [link[0][0] for link in controlled_links]
+    outbound_lst = [link[0][1] for link in controlled_links]
     state_lst = [
-        traci.trafficlight.getAllProgramLogics(tlc_id)[0].phases[i].state
+        program_logic.phases[i].state
         for i in range(num_phase)
     ]
-    inbound_lst = [
-        traci.trafficlight.getControlledLinks(tlc_id)[i][0][0] for i in range(num_phase)
-    ]
-    outbound_lst = [
-        traci.trafficlight.getControlledLinks(tlc_id)[i][0][1] for i in range(num_phase)
-    ]
+    # Reorganize the phase states
+    state_tuples = [[char for char in state] for state in state_lst]
+    #print('state_tuples',state_tuples)
+    state_lst = ["".join(chars) for chars in zip(*state_tuples)]
 
-    tlc_plan = [inbound_lst, outbound_lst, state_lst]
+    tlc_plan = []
+    for i in range(num_phase):
+        phase_duration_lst = [program_logic.phases[i].duration for i in range(num_phase)]
+        tlc_plan.append([inbound_lst[i], outbound_lst[i], state_lst[i], phase_duration_lst])
 
-    return map(list, zip(*tlc_plan))
+    #tlc_plan = [inbound_lst, outbound_lst, state_lst, phase_duration_lst]
+
+    # Transpose the tlc_plan list
+    #tlc_plan = list(map(list, zip(*tlc_plan)))
+    #print(tlc_plan)
+    
+    return tlc_plan
 
 
 def run_sumo(target_step: int, train_data_dir: Path, test_data_dir: Path ) -> None:
@@ -245,7 +280,7 @@ def run_sumo(target_step: int, train_data_dir: Path, test_data_dir: Path ) -> No
     feat_road = []
     g_node.append(["step", "name", "type"])
     g_edge.append(["step", "from", "to", "relation"])
-    feat_tlc.append(["step", "name", "phase"])
+    feat_tlc.append(["step", "name", "program","phase"])
     feat_road.append(["step", "name", "lane_num"])
     feat_veh.append(
         [
@@ -266,7 +301,7 @@ def run_sumo(target_step: int, train_data_dir: Path, test_data_dir: Path ) -> No
     
 
     tlc_plans = []
-    tlc_plans.append(["inbound", "outbound", "state"])
+    tlc_plans.append(["inbound", "outbound", "state","duration"])
     for tlc_id in traci.trafficlight.getIDList():
         tlc_plans.extend(get_tlc_plan(tlc_id))
 
@@ -294,7 +329,7 @@ def run_sumo(target_step: int, train_data_dir: Path, test_data_dir: Path ) -> No
             "tlc",
             traci.trafficlight.getIDList(),
             [
-                #traci.trafficlight.getProgram,
+                traci.trafficlight.getProgram,
                 traci.trafficlight.getPhase,
             ],
         )

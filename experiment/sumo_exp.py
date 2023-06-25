@@ -33,11 +33,11 @@ def run(scenario_name, target_step, rou_file, run_file):
     name = f"scenario_{scenario_name}_test_data_{target_step}"
     log_folder_path = exp_setting / "data" / dir_name / "Log"
     logger = setup_logger(name, log_folder_path)
-    if scenario_name == "traci_tls":
-        rou_file_name = "cross.rou.xml"
-    elif scenario_name == "bologna_clean":
-        rou_file_name ="joined.rou.xml" #"cross.rou.xml" 
-    #rou_file_name = rou_file
+    # if scenario_name == "traci_tls":
+    #     rou_file_name = "cross.rou.xml"
+    # elif scenario_name == "bologna_clean":
+    #     rou_file_name ="joined.rou.xml" #"cross.rou.xml" 
+    rou_file_name = rou_file
     
     isExist = os.path.exists(train_data_dir)
     if not isExist:

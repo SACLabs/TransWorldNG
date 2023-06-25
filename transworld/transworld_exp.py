@@ -136,9 +136,14 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     
     node_all = pd.read_csv(train_data_dir / "node_all.csv")
     node_id_dict = generate_unique_node_id(node_all)
+
+    tlc_plans = pd.read_csv(train_data_dir / "tlc_plans.csv")
+    tlc_plans["inbound"] = [node_id_dict[i] for i in tlc_plans["inbound"]]
+    tlc_plans["outbound"] = [node_id_dict[i] for i in tlc_plans["outbound"]]
+    tlc_plans.to_csv(train_data_dir / "tlc_plans_id.csv")
     
-    veh_depart = load_veh_depart("veh_depart", train_data_dir, training_step)
-    veh_route = load_veh_route("veh_route", train_data_dir)
+    # veh_depart = load_veh_depart("veh_depart", train_data_dir, training_step)
+    # veh_route = load_veh_route("veh_route", train_data_dir)
     logger.info(f"========== finish load route and depart ========")
     # init struc_dict, feat_dict, node_id_dict
     
