@@ -1,8 +1,8 @@
 from pathlib import Path
 from graph.load import load_graph
 from graph.process import generate_unique_node_id
-from rules.pre_process import load_veh_depart, pre_actions
-from rules.post_process import load_veh_route, post_actions
+from rules.pre_process_old import load_veh_depart, pre_actions
+from rules.post_process_old import load_veh_route, post_actions
 import random
 import torch.nn as nn
 from game.model import HGT, RuleBasedGenerator, GraphStateLoss
@@ -141,9 +141,11 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     tlc_plans["inbound"] = [node_id_dict[i] for i in tlc_plans["inbound"]]
     tlc_plans["outbound"] = [node_id_dict[i] for i in tlc_plans["outbound"]]
     tlc_plans.to_csv(train_data_dir / "tlc_plans_id.csv")
+
     
-    # veh_depart = load_veh_depart("veh_depart", train_data_dir, training_step)
-    # veh_route = load_veh_route("veh_route", train_data_dir)
+    
+    veh_depart = load_veh_depart("veh_depart", train_data_dir, training_step)
+    veh_route = load_veh_route("veh_route", train_data_dir)
     logger.info(f"========== finish load route and depart ========")
     # init struc_dict, feat_dict, node_id_dict
     
