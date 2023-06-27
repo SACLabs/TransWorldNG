@@ -19,7 +19,7 @@ def unique_id(data_path: Path):
     node_id_dict = generate_unique_node_id(node_all)
     return node_id_dict
 
-def load_graph(data_path: Path, start_step, end_step,node_id_dict) -> Tuple[Dict, Dict]:
+def load_graph(data_path: Path, start_step, end_step, node_id_dict, scale=True) -> Tuple[Dict, Dict]:
     """
     Load graph data from csv files.
     - read node,edge,feature files, assign unique node id to each node
@@ -51,30 +51,34 @@ def load_graph(data_path: Path, start_step, end_step,node_id_dict) -> Tuple[Dict
                 df['coor_x'] = [float(coor.replace('(','').replace(")", '').split(',')[0]) for coor in df['coordinate']]
                 df['coor_y'] = [float(coor.replace('(','').replace(")", '').split(',')[1]) for coor in df['coordinate']]
                 select_columns=df.columns.difference(['step', 'name','coordinate'])
-                scaled = pd.DataFrame(scalers['veh'].fit_transform(df[select_columns]), columns=select_columns, index=df.index)
-                for col in select_columns:
-                    df[col] = scaled[col]
-                df = df.drop(['coordinate'], axis=1)
+                if scale:
+                    scaled = pd.DataFrame(scalers['veh'].fit_transform(df[select_columns]), columns=select_columns, index=df.index)
+                    for col in select_columns:
+                        df[col] = scaled[col]
+                    df = df.drop(['coordinate'], axis=1)
             elif df_name == 'feat_lane':
                 df['shape_a'] = [float(coor.replace('(','').replace(")", '').split(',')[0]) for coor in df['shape']]
                 df['shape_b'] = [float(coor.replace('(','').replace(")", '').split(',')[1]) for coor in df['shape']]
                 df['shape_c'] = [float(coor.replace('(','').replace(")", '').split(',')[2]) for coor in df['shape']]
                 df['shape_d'] = [float(coor.replace('(','').replace(")", '').split(',')[3]) for coor in df['shape']]
                 select_columns=df.columns.difference(['step', 'name','shape'])
-                scaled = pd.DataFrame(scalers['lane'].fit_transform(df[select_columns]), columns=select_columns, index=df.index)
-                for col in select_columns:
-                    df[col] = scaled[col]
-                df = df.drop(['shape'], axis=1)
+                if scale:
+                    scaled = pd.DataFrame(scalers['lane'].fit_transform(df[select_columns]), columns=select_columns, index=df.index)
+                    for col in select_columns:
+                        df[col] = scaled[col]
+                    df = df.drop(['shape'], axis=1)
             elif df_name == 'feat_road':
                 select_columns=df.columns.difference(['step', 'name'])
-                scaled = pd.DataFrame(scalers['road'].fit_transform(df[select_columns]), columns=select_columns, index=df.index)
-                for col in select_columns:
-                    df[col] = scaled[col]
+                if scale:
+                    scaled = pd.DataFrame(scalers['road'].fit_transform(df[select_columns]), columns=select_columns, index=df.index)
+                    for col in select_columns:
+                        df[col] = scaled[col]
             elif df_name == 'feat_tlc':
                 select_columns=df.columns.difference(['step', 'name'])
-                scaled = pd.DataFrame(scalers['tlc'].fit_transform(df[select_columns]), columns=select_columns, index=df.index)
-                for col in select_columns:
-                    df[col] = scaled[col]        
+                if scale:
+                    scaled = pd.DataFrame(scalers['tlc'].fit_transform(df[select_columns]), columns=select_columns, index=df.index)
+                    for col in select_columns:
+                        df[col] = scaled[col]        
             else:
                 pass
         

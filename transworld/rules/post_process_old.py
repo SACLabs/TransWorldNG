@@ -30,11 +30,12 @@ def get_veh_next_lane(
 def get_current_phase_state(plan, current_time):
     phase_start_time = 0
     cycle_time = sum(plan[0][3])
-    current_time_in_cycle = current_time % cycle_time
+    current_time_in_cycle = float(current_time) % float(cycle_time)
     for inbound, outbound, state, phaseduration in plan:
         for i in range(len(phaseduration)):
             phase_end_time = phase_start_time + phaseduration[i]
             if current_time_in_cycle < phase_end_time:
+                
                 return i+1, state[i]
             phase_start_time = phase_end_time % cycle_time
     return None, None
@@ -49,7 +50,7 @@ def post_actions(
     outbound_lst = struc_dict[("lane", "phy/to", "lane")][1]
     time_lst = struc_dict[("lane", "phy/to", "lane")][2]
     action_time = node_names[0].split('@')[-1] # TODO this code only support full graph inference
-    action = []
+    cur_time = action_time
     aggr_edge_list = defaultdict(float)
     
     for inbound, outbound, time in zip(inbound_lst, outbound_lst, time_lst):
@@ -60,7 +61,7 @@ def post_actions(
             new_value_dict = aggr_edge_list[(inbound, outbound)] if aggr_edge_list[(inbound, outbound)]['time'] > time else {'time':time}
             aggr_edge_list[(inbound, outbound)] = new_value_dict
 
-    print(aggr_edge_list)
+    # print(aggr_edge_list)
 
 
     plan_df = pd.read_csv("/mnt/workspace/wangding/Desktop/TransWorldNG/experiment/hangzhou/data/run1/train_data/tlc_plans_id.csv")
@@ -73,58 +74,50 @@ def post_actions(
         duration = eval(row['duration'])
         plan.append((inbound, outbound, state, duration))
 
-    print(plan)
+    
+
+    #print(cur_time, cur_phase, cur_state)
+
+    # cycle_time = sum(plan[0][3])
+    # current_time_in_cycle = float(cur_time) % float(cycle_time)
+
+    # signal_states = {}  
 
 
-    cur_time = node_names[0].split('@')[-1]
+    # for inbound, outbound, state, phaseduration in plan:
+    #     phase_start_time = 0
+    #     for i in range(len(phaseduration)):
+    #         phase_end_time = phase_start_time + phaseduration[i]
+    #         if current_time_in_cycle < phase_end_time:
+    #             phase = i+1
+    #             signal_states[(inbound, outbound, time_in_state)] = state[i]
+  
 
-    cur_phase, cur_state = get_current_phase_state(plan, cur_time)
+    copy_list = aggr_edge_list.copy()
 
-
-    print(cur_time, cur_phase, cur_state)
-
-    signal_states = {}  
-    for inbound, outbound, state, duration in plan:
-        for i in range(len(duration)):
-            start_time = sum(duration[:i])  # 当前状态的起始时间
-            end_time = start_time + duration[i]  # 当前状态的结束时间
-            for t in range(start_time, end_time):
-                # 记录当前时间以及在当前时间下的信号状态
-                time_in_state = t - start_time
-                signal_states[(inbound, outbound, time_in_state)] = state[i]
-
-    print(signal_states)
-
-
-    for inbound, outbound, state, duration in plan:
-        state = signal_states[(inbound, outbound, 0)]
+    for (inbound, outbound) in copy_list:
+        cur_phase, state = get_current_phase_state(plan, action_time)
+        action = []
+        
         if state == "G":
-            # 添加边
             if (inbound, outbound) not in aggr_edge_list:
-                aggr_edge_list[(inbound, outbound)] = {"time": 0, "outbound": outbound}
-                action.append(
-                    "add_edge(veh/"
-                    + str(veh_id)
-                    + ",phy/to,"
-                    + "lane/"
-                    + str(outbound)
-                    + ")"
-                )
+                aggr_edge_list[(inbound, outbound)] = {"time": cur_time}
+                add_op = "add_edge(lane/" + str(inbound) + ",phy/to,lane/" + str(outbound) + ")"
+                if add_op not in struc_actions.get('lane/'+str(inbound)+'@'+str(cur_time), []):
+                    struc_actions.setdefault('lane/'+str(inbound)+'@'+str(cur_time), []).append(add_op)
+                if add_op not in struc_actions.get('lane/'+str(outbound)+'@'+str(cur_time), []):
+                    struc_actions.setdefault('lane/'+str(outbound)+'@'+str(cur_time), []).append(add_op)
         else:
-            # 删除边
             if (inbound, outbound) in aggr_edge_list:
                 del aggr_edge_list[(inbound, outbound)]
-                action.append(
-                    "remove_edge(veh/"
-                    + str(veh_id)
-                    + ",phy/to,"
-                    + "lane/"
-                    + str(outbound)
-                    + ")"
-                )
-        
-    if action != []:
-        struc_actions.update({'veh/'+str(veh_id)+'@'+str(action_time): action})
+                # remove_op = "remove_edge(lane/" + str(inbound) + ",phy/to,lane/" + str(outbound) + ")"
+                # if remove_op not in struc_actions.get('lane/'+str(inbound)+'@'+str(cur_time), []):
+                #     struc_actions.setdefault('lane/'+str(inbound)+'@'+str(cur_time), []).append(remove_op)
+                # if remove_op not in struc_actions.get('lane/'+str(outbound)+'@'+str(cur_time), []):
+                #     struc_actions.setdefault('lane/'+str(outbound)+'@'+str(cur_time), []).append(remove_op)
+
+    #print(cur_time, struc_actions)
+
     return struc_actions
 
 
@@ -228,4 +221,5 @@ def post_actions(
 def get_feat_actions(
     node_names: List[str], struc_dict: Dict, feat_dict: Dict, veh_od: Dict
 ) -> Dict:
-    pass
+    feat_actions = defaultdict(list)
+    return feat_actions

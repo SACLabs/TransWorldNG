@@ -142,14 +142,14 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     tlc_plans["outbound"] = [node_id_dict[i] for i in tlc_plans["outbound"]]
     tlc_plans.to_csv(train_data_dir / "tlc_plans_id.csv")
 
-    
+
     
     veh_depart = load_veh_depart("veh_depart", train_data_dir, training_step)
     veh_route = load_veh_route("veh_route", train_data_dir)
     logger.info(f"========== finish load route and depart ========")
     # init struc_dict, feat_dict, node_id_dict
     
-    struc_dict, feat_dict, node_id_dict, scalers =  load_graph(train_data_dir, 0, training_step-1, node_id_dict)
+    struc_dict, feat_dict, node_id_dict, scalers =  load_graph(train_data_dir, 0, training_step-1, node_id_dict, scale=True)
     #test_struc, test_feat, node_id_dict, scalers =  load_graph(test_data_dir)
     logger.info(f"========= finish load graph =========")
     #model parameters
@@ -227,7 +227,7 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
             pickle.dump(sim_graph, f)  
         graph.reset()
         #struc_dict, feat_dict, node_id_dict, scalers =  load_graph(train_data_dir, 0+pred_step*(i+1), training_step+pred_step*(i+1), node_id_dict)
-        struc_dict, feat_dict, node_id_dict, scalers =  load_graph(train_data_dir, training_step, training_step+pred_step*(i+1), node_id_dict)
+        struc_dict, feat_dict, node_id_dict, scalers =  load_graph(train_data_dir, training_step, training_step+pred_step*(i+1), node_id_dict, scale=True)
         veh_depart = load_veh_depart("veh_depart", train_data_dir, training_step+pred_step*(i+1))
         #logger.info(f"--------- current is {0+pred_step*(i+1), training_step+pred_step*(i+1)} --------")
         graph = Graph(struc_dict, feat_dict)
@@ -257,3 +257,7 @@ if __name__ =="__main__":
     else:
         device = torch.device("cuda",args.gpu)
     run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device)
+
+
+
+#
