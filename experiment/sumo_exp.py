@@ -23,7 +23,7 @@ def run(scenario_name, target_step, rou_file, run_file):
 
     exp_dir = Path(__file__).parent
     
-    dir_name = "run1"
+    dir_name = 'test'+str(target_step)
     target_step = int(target_step)
     exp_setting = exp_dir / scenario_name
 

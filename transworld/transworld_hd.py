@@ -1,8 +1,9 @@
 from pathlib import Path
-from graph.load import load_graph
+#from graph.load import load_graph
+from graph.load_hd import load_graph
 from graph.process import generate_unique_node_id
-from rules.pre_process import load_veh_depart, pre_actions
-from rules.post_process import load_veh_route, post_actions
+from rules.pre_process_hd import load_veh_depart, pre_actions
+from rules.post_process_hd import load_veh_route, post_actions
 import random
 import torch.nn as nn
 from game.model import HGT, RuleBasedGenerator, GraphStateLoss
@@ -13,6 +14,7 @@ import torch
 from game.operator.transform import dgl_graph_to_graph_dict
 from tqdm import tqdm
 from datetime import datetime
+#from eval.eval import struc_dict_to_eval, raw_edge_to_eval, compare_feat, compare_struc
 import pickle
 import os
 import csv
@@ -37,7 +39,11 @@ def train(timestamps, graph, batch_size, num_workers, encoder, generator, veh_ro
     # graph_dicts = {}
     logger.info("========= start training =======")
     loss_list = []
-    for i, (cur_graphs, next_graphs) in enumerate(train_loader): 
+    for i, (cur_graphs, next_graphs) in enumerate(train_loader):  # 这里for的是时间戳
+        # 下面这个for循环后面会改成并发操作
+        if i == 12:
+            print()
+        #logger.info(f"========= step{i} =======")
         loss = 0.
         for ((_, cur_graph), (seed_node_n_time, next_graph)) in zip(cur_graphs.items(), next_graphs.items()):  
             cur_graph, next_graph = cur_graph.to(device), next_graph.to(device)
@@ -94,6 +100,7 @@ def eval(graph, batch_size, num_workers, encoder, generator, veh_depart, veh_rou
 
 
 def create_folder(folder_path, delete_origin=False):
+    # 这个函数的作用是,当文件夹存在就删除,然后重新创建一个新的
     if not os.path.exists(folder_path):
         # shutil.rmtree(folder_path)
         os.makedirs(folder_path, exist_ok=True)
@@ -118,13 +125,17 @@ def setup_logger(name, log_folder_path, level=logging.DEBUG):
 
 def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer, device):
     time_diff = []
+    #for test in [1,2,3,4,5]:
 
-    exp_dir = Path(__file__).parent.parent / "experiment"
     
-    exp_setting = exp_dir / scenario
-    data_dir = exp_setting / "data" / test_data
-    train_data_dir = data_dir  / "train_data"
-    test_data_dir = data_dir / "test_data"
+    exp_dir = Path(__file__).parent.parent / "experiment" /scenario/"data"
+
+    exp_setting = exp_dir / test_data
+    #exp_setting = exp_dir / "bologna_clean"
+    #exp_setting = exp_dir / scenario
+    data_dir = exp_setting / "data" 
+    train_data_dir = data_dir 
+    #test_data_dir = data_dir / "test_data"
     out_dir = data_dir / f"out_dim_{hid_dim}_n_heads_{n_heads}_n_layer_{n_layer}_pred_step_{pred_step}"
     name = f"scenario_{scenario}test_data_{test_data}_dim_{hid_dim}_n_heads_{n_heads}_n_layer_{n_layer}"
     log_folder_path = out_dir / "Log"
@@ -136,39 +147,24 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     
     node_all = pd.read_csv(train_data_dir / "node_all.csv")
     node_id_dict = generate_unique_node_id(node_all)
-
-
-    file_path = train_data_dir / "tlc_plans.csv"
-
-    if os.path.isfile(file_path):
-        tlc = True
-        tlc_plans = pd.read_csv(file_path)
-        tlc_plans["inbound"] = [node_id_dict[i] for i in tlc_plans["inbound"]]
-        tlc_plans["outbound"] = [node_id_dict[i] for i in tlc_plans["outbound"]]
-        tlc_plans.to_csv(train_data_dir / "tlc_plans_id.csv")
-    else:
-        tlc = False
-        print("TLC does not exist.")
-
-
     
     veh_depart = load_veh_depart("veh_depart", train_data_dir, training_step)
     veh_route = load_veh_route("veh_route", train_data_dir)
     logger.info(f"========== finish load route and depart ========")
     # init struc_dict, feat_dict, node_id_dict
     
-    struc_dict, feat_dict, node_id_dict, scalers =  load_graph(train_data_dir, 0, training_step-1, node_id_dict, scale=True)
+    struc_dict, feat_dict, node_id_dict, scalers =  load_graph(train_data_dir, 0, training_step-1, node_id_dict)
     #test_struc, test_feat, node_id_dict, scalers =  load_graph(test_data_dir)
     logger.info(f"========= finish load graph =========")
     #model parameters
-    n_epochs = 1 #200
-    batch_size = max(4,training_step//10 - 10) #100
-    num_workers = 1
+    n_epochs = 10 #200
+    batch_size = 50 #100
+    num_workers = 1 #10
     batch_size = max(1, batch_size * num_workers)
     lr = 5e-4
     hid_dim = hid_dim
     n_heads = n_heads
-    changable_feature_names = ['speed','pos_on_lane','occupancy','acceleration']
+    changable_feature_names = ['xVelocity','yVelocity']
     graph = Graph(struc_dict, feat_dict)
     hetero_feat_dim = graph.hetero_feat_dim
     timestamps = graph.timestamps.float().tolist()
@@ -197,20 +193,19 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
             for ntype in hetero_feat_dim.keys()
         },
         activation = nn.ReLU(),
-        scalers= scalers,
+        scalers= None,
         output_activation = nn.Sigmoid()
     ).to(device)
     
     logger.info("========== finish generate generator rule ==========")
-
-    
     generator.register_rule(post_actions)
-    
+
     loss_fcn = GraphStateLoss().to(device)
 
     optimizer = torch.optim.Adam(list(encoder.parameters())+list(generator.parameters()), lr=lr)
     
     
+    before = datetime.now()
     
     loss_avg = []
     for ep in tqdm(range(n_epochs)):
@@ -227,8 +222,14 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     torch.save(encoder.state_dict(), out_dir / 'encorder.pth')
     torch.save(generator.state_dict(), out_dir / 'generator.pth')
     
-    before = datetime.now()
+    # encoder_path = out_dir / 'encorder.pth'
+    # generator_path = out_dir / 'generator.pth'
+    
+    # encoder.load_state_dict(torch.load(encoder_path))
+    # generator.load_state_dict(torch.load(generator_path))
 
+
+    
     for i in range(10):
         logger.info(f"--------- current is {0+pred_step*(i+1), training_step+pred_step*(i+1)} --------")
         sim_graph = eval(graph, batch_size//num_workers, num_workers, encoder, generator, veh_depart, veh_route, changable_feature_names, hetero_feat_dim, logger, device, training_step+pred_step*(i+1), pred_step)
@@ -237,25 +238,27 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
             pickle.dump(sim_graph, f)  
         graph.reset()
         #struc_dict, feat_dict, node_id_dict, scalers =  load_graph(train_data_dir, 0+pred_step*(i+1), training_step+pred_step*(i+1), node_id_dict)
-        struc_dict, feat_dict, node_id_dict, scalers =  load_graph(train_data_dir, training_step, training_step+pred_step*(i+1), node_id_dict, scale=True)
-        veh_depart = load_veh_depart("veh_depart", train_data_dir, training_step+pred_step*(i+1))
+        struc_dict, feat_dict, node_id_dict, scalers =  load_graph(train_data_dir, 0, training_step+pred_step*(i+1), node_id_dict)
+        #veh_depart = load_veh_depart("veh_depart", train_data_dir, training_step+pred_step*(i+1))
         #logger.info(f"--------- current is {0+pred_step*(i+1), training_step+pred_step*(i+1)} --------")
         graph = Graph(struc_dict, feat_dict)
         #print(0+pred_step*(i+1), training_step+pred_step*(i+1))
 
+    # with open(out_dir / f"node_id_dict_{n_layer}_{n_heads}_{hid_dim}.p", "wb") as f:
+    #     pickle.dump(node_id_dict, f) 
 
     after = datetime.now()
     time_diff.append((after - before).total_seconds())
     
-    logger.info(f"========== Eval time_diff is : {(after - before).total_seconds()} ==========")
+    logger.info(f"========== time_diff is : {(after - before).total_seconds()} ==========")
     logger.info("========== Exp has finished! ==========")
 
 
 if __name__ =="__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--scenario", type=str, default='traci_tls')
-    parser.add_argument("--train_data", type=str, default='run1')
-    parser.add_argument("--training_step", type=int, default=80)
+    parser.add_argument("--scenario", type=str, default='HighD')
+    parser.add_argument("--train_data", type=str, default='highway01')
+    parser.add_argument("--training_step", type=int, default=1000)
     parser.add_argument("--pred_step", type=int, default=10)
     parser.add_argument("--hid_dim", type=int, default=100)
     parser.add_argument("--n_head", type=int, default=4)
@@ -267,7 +270,3 @@ if __name__ =="__main__":
     else:
         device = torch.device("cuda",args.gpu)
     run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device)
-
-
-
-#

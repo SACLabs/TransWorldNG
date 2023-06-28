@@ -1,170 +1,29 @@
-2023-06-25 09:03:19,021,21,INFO,scenario_hangzhou_test_data_100::========== traci_start=======
+2023-06-28 09:04:37,687,687,INFO,scenario_bologna_clean_test_data_500::========== traci_start=======
 /usr/share/sumo/bin/sumo: /home/pai/lib/libtiff.so.5: no version information available (required by /usr/lib/x86_64-linux-gnu/libFOX-1.6.so.0)
-Warning: Missing yellow phase in tlLogic 'intersection_1_1', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_1_1', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_1_1', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_1_1', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_1_1', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_1_1', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_1_1', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_1_1', program '0' for tl-index 3 when switching to phase 15.
-Warning: Missing yellow phase in tlLogic 'intersection_1_2', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_1_2', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_1_2', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_1_2', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_1_2', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_1_2', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_1_2', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_1_2', program '0' for tl-index 3 when switching to phase 15.
-Warning: Missing yellow phase in tlLogic 'intersection_1_3', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_1_3', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_1_3', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_1_3', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_1_3', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_1_3', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_1_3', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_1_3', program '0' for tl-index 3 when switching to phase 15.
-Warning: Missing yellow phase in tlLogic 'intersection_1_4', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_1_4', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_1_4', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_1_4', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_1_4', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_1_4', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_1_4', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_1_4', program '0' for tl-index 3 when switching to phase 15.
-Warning: Missing yellow phase in tlLogic 'intersection_2_1', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_2_1', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_2_1', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_2_1', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_2_1', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_2_1', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_2_1', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_2_1', program '0' for tl-index 3 when switching to phase 15.
-Warning: Missing yellow phase in tlLogic 'intersection_2_2', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_2_2', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_2_2', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_2_2', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_2_2', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_2_2', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_2_2', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_2_2', program '0' for tl-index 3 when switching to phase 15.
-Warning: Missing yellow phase in tlLogic 'intersection_2_3', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_2_3', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_2_3', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_2_3', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_2_3', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_2_3', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_2_3', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_2_3', program '0' for tl-index 3 when switching to phase 15.
-Warning: Missing yellow phase in tlLogic 'intersection_2_4', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_2_4', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_2_4', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_2_4', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_2_4', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_2_4', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_2_4', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_2_4', program '0' for tl-index 3 when switching to phase 15.
-Warning: Missing yellow phase in tlLogic 'intersection_3_1', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_3_1', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_3_1', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_3_1', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_3_1', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_3_1', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_3_1', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_3_1', program '0' for tl-index 3 when switching to phase 15.
-Warning: Missing yellow phase in tlLogic 'intersection_3_2', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_3_2', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_3_2', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_3_2', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_3_2', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_3_2', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_3_2', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_3_2', program '0' for tl-index 3 when switching to phase 15.
-Warning: Missing yellow phase in tlLogic 'intersection_3_3', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_3_3', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_3_3', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_3_3', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_3_3', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_3_3', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_3_3', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_3_3', program '0' for tl-index 3 when switching to phase 15.
-Warning: Missing yellow phase in tlLogic 'intersection_3_4', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_3_4', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_3_4', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_3_4', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_3_4', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_3_4', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_3_4', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_3_4', program '0' for tl-index 3 when switching to phase 15.
-Warning: Missing yellow phase in tlLogic 'intersection_4_1', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_4_1', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_4_1', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_4_1', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_4_1', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_4_1', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_4_1', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_4_1', program '0' for tl-index 3 when switching to phase 15.
-Warning: Missing yellow phase in tlLogic 'intersection_4_2', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_4_2', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_4_2', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_4_2', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_4_2', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_4_2', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_4_2', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_4_2', program '0' for tl-index 3 when switching to phase 15.
-Warning: Missing yellow phase in tlLogic 'intersection_4_3', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_4_3', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_4_3', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_4_3', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_4_3', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_4_3', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_4_3', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_4_3', program '0' for tl-index 3 when switching to phase 15.
-Warning: Missing yellow phase in tlLogic 'intersection_4_4', program '0' for tl-index 12 when switching to phase 1.
-Warning: Missing yellow phase in tlLogic 'intersection_4_4', program '0' for tl-index 3 when switching to phase 3.
-Warning: Missing yellow phase in tlLogic 'intersection_4_4', program '0' for tl-index 15 when switching to phase 5.
-Warning: Missing yellow phase in tlLogic 'intersection_4_4', program '0' for tl-index 6 when switching to phase 7.
-Warning: Missing yellow phase in tlLogic 'intersection_4_4', program '0' for tl-index 30 when switching to phase 9.
-Warning: Missing yellow phase in tlLogic 'intersection_4_4', program '0' for tl-index 12 when switching to phase 11.
-Warning: Missing yellow phase in tlLogic 'intersection_4_4', program '0' for tl-index 21 when switching to phase 13.
-Warning: Missing yellow phase in tlLogic 'intersection_4_4', program '0' for tl-index 3 when switching to phase 15.
-Step #0.00 (0ms ?*RT. ?UPS, TraCI: 8ms, vehicles TOT 9 ACT 9 BUF 0)                       Step #100.00 (1ms ~= 1000.00*RT, ~84000.00UPS, TraCI: 1434ms, vehicles TOT 84 ACT 84 BUF 0Step #200.00 (1ms ~= 1000.00*RT, ~159000.00UPS, TraCI: 633ms, vehicles TOT 163 ACT 159 BUFStep #300.00 (1ms ~= 1000.00*RT, ~226000.00UPS, TraCI: 687ms, vehicles TOT 247 ACT 226 BUFWarning: Vehicle '217' performs emergency braking on lane 'road_0_4_0_0' with decel=9.00, wished=4.50, severity=1.00, time=345.00.
-Step #400.00 (2ms ~= 500.00*RT, ~145000.00UPS, TraCI: 709ms, vehicles TOT 336 ACT 290 BUF Warning: Vehicle '318' performs emergency braking on lane 'road_0_1_0_1' with decel=9.00, wished=4.50, severity=1.00, time=450.00.
-Warning: Vehicle '337' performs emergency braking on lane 'road_5_4_2_1' with decel=9.00, wished=4.50, severity=1.00, time=485.00.
-Step #500.00 (2ms ~= 500.00*RT, ~161000.00UPS, TraCI: 756ms, vehicles TOT 426 ACT 322 BUF Warning: Vehicle '176' performs emergency braking on lane 'road_1_4_0_0' with decel=9.00, wished=4.50, severity=1.00, time=520.00.
-Warning: Vehicle '334' performs emergency braking on lane 'road_3_2_1_0' with decel=9.00, wished=4.50, severity=1.00, time=590.00.
-Step #600.00 (2ms ~= 500.00*RT, ~191500.00UPS, TraCI: 790ms, vehicles TOT 522 ACT 383 BUF Step #700.00 (3ms ~= 333.33*RT, ~138333.33UPS, TraCI: 691ms, vehicles TOT 628 ACT 415 BUF Warning: Vehicle '623' performs emergency braking on lane 'road_5_3_2_1' with decel=9.00, wished=4.50, severity=1.00, time=765.00.
-Warning: Vehicle '623' performs emergency stop at the end of lane 'road_5_3_2_1' because of a red traffic light (decel=-12.17, offset=2.07), time=765.00.
-Step #800.00 (3ms ~= 333.33*RT, ~152333.33UPS, TraCI: 719ms, vehicles TOT 737 ACT 457 BUF Step #900.00 (3ms ~= 333.33*RT, ~163000.00UPS, TraCI: 734ms, vehicles TOT 849 ACT 489 BUF Step #1000.00 (3ms ~= 333.33*RT, ~168333.33UPS, TraCI: 746ms, vehicles TOT 957 ACT 505 BUFStep #1100.00 (3ms ~= 333.33*RT, ~189000.00UPS, TraCI: 787ms, vehicles TOT 1068 ACT 567 BUStep #1200.00 (4ms ~= 250.00*RT, ~146750.00UPS, TraCI: 795ms, vehicles TOT 1180 ACT 587 BUWarning: Vehicle '691' performs emergency braking on lane 'road_1_3_1_0' with decel=9.00, wished=4.50, severity=1.00, time=1255.00.
-Step #1300.00 (3ms ~= 333.33*RT, ~182000.00UPS, TraCI: 783ms, vehicles TOT 1254 ACT 546 BUWarning: Vehicle '1014' performs emergency braking on lane 'road_1_2_0_0' with decel=9.00, wished=4.50, severity=1.00, time=1325.00.
-Step #1400.00 (4ms ~= 250.00*RT, ~135750.00UPS, TraCI: 770ms, vehicles TOT 1329 ACT 543 BUStep #1500.00 (3ms ~= 333.33*RT, ~173000.00UPS, TraCI: 756ms, vehicles TOT 1412 ACT 519 BUStep #1600.00 (3ms ~= 333.33*RT, ~173666.67UPS, TraCI: 755ms, vehicles TOT 1493 ACT 521 BUWarning: Vehicle '1407' performs emergency braking on lane 'road_4_3_2_0' with decel=9.00, wished=4.50, severity=1.00, time=1675.00.
-Step #1700.00 (4ms ~= 250.00*RT, ~135250.00UPS, TraCI: 768ms, vehicles TOT 1577 ACT 541 BUWarning: Vehicle '1204' performs emergency braking on lane 'road_2_2_1_0' with decel=9.00, wished=4.50, severity=1.00, time=1780.00.
-Step #1800.00 (3ms ~= 333.33*RT, ~172333.33UPS, TraCI: 749ms, vehicles TOT 1666 ACT 517 BUWarning: Vehicle '1613' performs emergency braking on lane 'road_5_3_2_0' with decel=9.00, wished=4.50, severity=1.00, time=1815.00.
-Step #1900.00 (3ms ~= 333.33*RT, ~179666.67UPS, TraCI: 782ms, vehicles TOT 1742 ACT 539 BUWarning: Vehicle '729' performs emergency braking on lane 'road_4_4_3_1' with decel=9.00, wished=4.50, severity=1.00, time=1955.00.
-Warning: Vehicle '729' performs emergency stop at the end of lane 'road_4_4_3_1' because of a red traffic light (decel=-11.14, offset=1.46), time=1955.00.
-Step #2000.00 (3ms ~= 333.33*RT, ~174666.67UPS, TraCI: 764ms, vehicles TOT 1818 ACT 524 BUStep #2100.00 (4ms ~= 250.00*RT, ~127500.00UPS, TraCI: 747ms, vehicles TOT 1894 ACT 510 BUStep #2200.00 (3ms ~= 333.33*RT, ~176000.00UPS, TraCI: 772ms, vehicles TOT 1962 ACT 528 BUWarning: Vehicle '784' performs emergency braking on lane 'road_4_4_3_1' with decel=9.00, wished=4.50, severity=1.00, time=2235.00.
-Warning: Vehicle '784' performs emergency stop at the end of lane 'road_4_4_3_1' because of a red traffic light (decel=-10.23, offset=1.02), time=2235.00.
-Step #2300.00 (3ms ~= 333.33*RT, ~179000.00UPS, TraCI: 776ms, vehicles TOT 2036 ACT 537 BUStep #2400.00 (3ms ~= 333.33*RT, ~176000.00UPS, TraCI: 763ms, vehicles TOT 2112 ACT 528 BUWarning: Vehicle '2084' performs emergency braking on lane 'road_5_3_2_1' with decel=9.00, wished=4.50, severity=1.00, time=2445.00.
-Step #2500.00 (4ms ~= 250.00*RT, ~139000.00UPS, TraCI: 782ms, vehicles TOT 2192 ACT 556 BUWarning: Teleporting vehicle '1634'; waited too long (wrong lane), lane='road_0_4_0_0', time=2540.00.
-Warning: Vehicle '1634' ends teleporting on edge 'road_1_4_0', time=2540.00.
-Step #2600.00 (3ms ~= 333.33*RT, ~191000.00UPS, TraCI: 793ms, vehicles TOT 2272 ACT 573 BUStep #2700.00 (4ms ~= 250.00*RT, ~139000.00UPS, TraCI: 783ms, vehicles TOT 2348 ACT 556 BUStep #2800.00 (4ms ~= 250.00*RT, ~134000.00UPS, TraCI: 771ms, vehicles TOT 2398 ACT 536 BUStep #2900.00 (3ms ~= 333.33*RT, ~167000.00UPS, TraCI: 742ms, vehicles TOT 2454 ACT 501 BUStep #3000.00 (3ms ~= 333.33*RT, ~176000.00UPS, TraCI: 756ms, vehicles TOT 2541 ACT 528 BUWarning: Vehicle '2497' performs emergency braking on lane 'road_1_1_1_0' with decel=9.00, wished=4.50, severity=1.00, time=3075.00.
-Warning: Vehicle '2592' performs emergency braking on lane 'road_1_0_1_0' with decel=9.00, wished=4.50, severity=1.00, time=3091.00.
-Step #3100.00 (4ms ~= 250.00*RT, ~135250.00UPS, TraCI: 769ms, vehicles TOT 2614 ACT 541 BUStep #3200.00 (3ms ~= 333.33*RT, ~174333.33UPS, TraCI: 749ms, vehicles TOT 2691 ACT 523 BUStep #3300.00 (3ms ~= 333.33*RT, ~174333.33UPS, TraCI: 761ms, vehicles TOT 2761 ACT 523 BUWarning: Vehicle '2700' performs emergency braking on lane 'road_4_3_2_0' with decel=9.00, wished=4.50, severity=1.00, time=3355.00.
-Warning: Vehicle '2790' performs emergency braking on lane 'road_0_2_0_1' with decel=9.00, wished=4.50, severity=1.00, time=3390.00.
-Step #3400.00 (3ms ~= 333.33*RT, ~175333.33UPS, TraCI: 768ms, vehicles TOT 2831 ACT 526 BUStep #3500.00 (4ms ~= 250.00*RT, ~127000.00UPS, TraCI: 762ms, vehicles TOT 2883 ACT 508 BUWarning: Vehicle '2776' performs emergency braking on lane 'road_1_2_0_1' with decel=9.00, wished=4.50, severity=1.00, time=3530.00.
-Warning: Vehicle '2776' performs emergency stop at the end of lane 'road_1_2_0_1' because of a red traffic light (decel=-11.07, offset=1.51), time=3530.00.
-Step #3600.00Warning: Vehicle '2638' performs emergency braking on lane 'road_1_3_1_0' with decel=9.00, wished=4.50, severity=1.00, time=3600.00.
- (3ms ~= 333.33*RT, ~179333.33UPS, TraCI: 771ms, vehicles TOT 2964 ACT 538 BUStep #3700.00 (3ms ~= 333.33*RT, ~163666.67UPS, TraCI: 774ms, vehicles TOT 2983 ACT 491 BUStep #3800.00 (2ms ~= 500.00*RT, ~197500.00UPS, TraCI: 678ms, vehicles TOT 2983 ACT 395 BUWarning: Vehicle '1461' performs emergency braking on lane 'road_0_4_0_1' with decel=9.00, wished=4.50, severity=1.00, time=3810.00.
-Warning: Vehicle '2535' performs emergency braking on lane 'road_5_4_2_1' with decel=9.00, wished=4.50, severity=1.00, time=3845.00.
-Step #3900.00 (3ms ~= 333.33*RT, ~117000.00UPS, TraCI: 675ms, vehicles TOT 2983 ACT 351 BUStep #4000.00 (2ms ~= 500.00*RT, ~149000.00UPS, TraCI: 616ms, vehicles TOT 2983 ACT 298 BUWarning: Teleporting vehicle '2913'; waited too long (wrong lane), lane='road_0_4_0_0', time=4007.00.
-Warning: Vehicle '2913' ends teleporting on edge 'road_1_4_0', time=4007.00.
-Warning: Vehicle '2765' performs emergency braking on lane 'road_1_1_0_1' with decel=9.00, wished=4.50, severity=1.00, time=4090.00.
-Warning: Vehicle '2765' performs emergency stop at the end of lane 'road_1_1_0_1' because of a red traffic light (decel=-12.96, offset=2.84), time=4090.00.
-Warning: Vehicle '1592' performs emergency braking on lane 'road_0_4_0_1' with decel=9.00, wished=4.50, severity=1.00, time=4090.00.
-Step #4100.00 (2ms ~= 500.00*RT, ~127000.00UPS, TraCI: 597ms, vehicles TOT 2983 ACT 254 BUStep #4200.00 (2ms ~= 500.00*RT, ~110500.00UPS, TraCI: 577ms, vehicles TOT 2983 ACT 221 BUStep #4300.00 (1ms ~= 1000.00*RT, ~173000.00UPS, TraCI: 543ms, vehicles TOT 2983 ACT 173 BStep #4400.00 (0ms ?*RT. ?UPS, TraCI: 529ms, vehicles TOT 2983 ACT 150 BUF 0)             Step #4500.00 (1ms ~= 1000.00*RT, ~131000.00UPS, TraCI: 521ms, vehicles TOT 2983 ACT 131 BStep #4600.00 (1ms ~= 1000.00*RT, ~103000.00UPS, TraCI: 497ms, vehicles TOT 2983 ACT 103 BStep #4700.00 (0ms ?*RT. ?UPS, TraCI: 504ms, vehicles TOT 2983 ACT 90 BUF 0)              Step #4800.00 (1ms ~= 1000.00*RT, ~82000.00UPS, TraCI: 492ms, vehicles TOT 2983 ACT 82 BUFStep #4900.00 (0ms ?*RT. ?UPS, TraCI: 475ms, vehicles TOT 2983 ACT 65 BUF 0)              Step #5000.00 (1ms ~= 1000.00*RT, ~59000.00UPS, TraCI: 469ms, vehicles TOT 2983 ACT 59 BUFStep #5100.00 (0ms ?*RT. ?UPS, TraCI: 463ms, vehicles TOT 2983 ACT 49 BUF 0)              Step #5200.00 (0ms ?*RT. ?UPS, TraCI: 474ms, vehicles TOT 2983 ACT 40 BUF 0)              Step #5300.00 (0ms ?*RT. ?UPS, TraCI: 453ms, vehicles TOT 2983 ACT 33 BUF 0)              Step #5400.00 (0ms ?*RT. ?UPS, TraCI: 455ms, vehicles TOT 2983 ACT 27 BUF 0)              Step #5500.00 (0ms ?*RT. ?UPS, TraCI: 443ms, vehicles TOT 2983 ACT 18 BUF 0)              Step #5600.00 (0ms ?*RT. ?UPS, TraCI: 437ms, vehicles TOT 2983 ACT 9 BUF 0)               Step #5700.00 (0ms ?*RT. ?UPS, TraCI: 434ms, vehicles TOT 2983 ACT 2 BUF 0)               Step #5800.00 (0ms ?*RT. ?UPS, TraCI: 436ms, vehicles TOT 2983 ACT 1 BUF 0)               Step #5854.00 (0ms ?*RT. ?UPS, TraCI: 9729ms, vehicles TOT 2983 ACT 0 BUF 0)              
+2023-06-28 09:05:21,211,211,INFO,scenario_traci_tls_test_data_300::========== traci_start=======
+/usr/share/sumo/bin/sumo: /home/pai/lib/libtiff.so.5: no version information available (required by /usr/lib/x86_64-linux-gnu/libFOX-1.6.so.0)
+***Starting server on port 40795 ***
+Loading net-file from '/mnt/workspace/wangding/Desktop/TransWorldNG/experiment/traci_tls/cross.net.xml' ... done (1ms).
+Loading additional-files from '/mnt/workspace/wangding/Desktop/TransWorldNG/experiment/traci_tls/cross.det.xml' ... done (16ms).
+Loading done.
+Simulation version 1.17.0 started with time: 0.00.
+2023-06-28 09:09:07,650,650,INFO,scenario_bologna_clean_test_data_500::========== traci_start=======
+/usr/share/sumo/bin/sumo: /home/pai/lib/libtiff.so.5: no version information available (required by /usr/lib/x86_64-linux-gnu/libFOX-1.6.so.0)
+Simulation ended at time: 6486.00
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 257.45s
+ TraCI-Duration: 255.40s
+ Real time factor: 25.1936
+ UPS: 1191.512006
+Vehicles: 
+ Inserted: 2304
+ Running: 0
+ Waiting: 0
+
  Retrying in 1 seconds
-step 100 :Train dataset saved!
-step 120 :Test dataset saved!
-0it [00:00, ?it/s]3it [00:00, 21.55it/s]6it [00:00, 21.59it/s]9it [00:00, 21.55it/s]12it [00:00, 21.54it/s]15it [00:00, 21.54it/s]18it [00:00, 21.52it/s]21it [00:00, 21.45it/s]24it [00:01, 21.36it/s]27it [00:01, 21.28it/s]30it [00:01, 20.92it/s]33it [00:01, 21.00it/s]36it [00:01, 21.15it/s]39it [00:01, 21.24it/s]42it [00:01, 21.30it/s]45it [00:02, 21.35it/s]48it [00:02, 21.38it/s]51it [00:02, 21.41it/s]54it [00:02, 21.41it/s]57it [00:02, 21.40it/s]60it [00:02, 21.36it/s]63it [00:02, 21.37it/s]66it [00:03, 21.37it/s]69it [00:03, 21.34it/s]72it [00:03, 21.32it/s]75it [00:03, 21.35it/s]78it [00:03, 21.27it/s]81it [00:03, 21.30it/s]1893it [00:03, 4243.43it/s]2983it [00:03, 759.31it/s] 
-0it [00:00, ?it/s]3it [00:00, 20.62it/s]6it [00:00, 21.00it/s]9it [00:00, 21.14it/s]12it [00:00, 21.23it/s]15it [00:00, 21.25it/s]18it [00:00, 21.29it/s]21it [00:00, 21.32it/s]24it [00:01, 21.33it/s]27it [00:01, 21.32it/s]30it [00:01, 21.32it/s]33it [00:01, 21.30it/s]36it [00:01, 21.31it/s]39it [00:01, 21.32it/s]42it [00:01, 21.33it/s]45it [00:02, 21.34it/s]48it [00:02, 21.34it/s]51it [00:02, 21.16it/s]54it [00:02, 21.21it/s]57it [00:02, 21.23it/s]60it [00:02, 21.26it/s]63it [00:02, 21.26it/s]66it [00:03, 21.17it/s]69it [00:03, 21.21it/s]72it [00:03, 21.23it/s]75it [00:03, 21.26it/s]78it [00:03, 21.27it/s]81it [00:03, 21.27it/s]1872it [00:03, 4189.77it/s]2983it [00:03, 756.41it/s] 
-2023-06-25 10:09:15,727,727,INFO,scenario_hangzhou_test_data_100::========== runtime_hangzhou_100_3956.705731 =======
+step 300 :Train dataset saved!
+step 320 :Test dataset saved!
+0it [00:00, ?it/s]25it [00:00, 241.60it/s]50it [00:00, 242.93it/s]75it [00:00, 209.67it/s]97it [00:00, 212.73it/s]119it [00:00, 214.63it/s]141it [00:00, 205.31it/s]162it [00:00, 205.76it/s]297it [00:00, 551.55it/s]2304it [00:00, 2567.66it/s]
+0it [00:00, ?it/s]19it [00:00, 185.38it/s]41it [00:00, 204.80it/s]62it [00:00, 196.97it/s]83it [00:00, 199.12it/s]103it [00:00, 195.59it/s]125it [00:00, 202.71it/s]147it [00:00, 190.77it/s]168it [00:00, 196.16it/s]1570it [00:00, 4282.97it/s]2304it [00:00, 2384.39it/s]
+2023-06-28 09:09:41,833,833,INFO,scenario_traci_tls_test_data_300::========== runtime_traci_tls_300_260.621957 =======
