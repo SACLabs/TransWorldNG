@@ -149,6 +149,8 @@ class RuleBasedGenerator(nn.Module):
                 ntype: sklearn_scaling(self.scalers[ntype], nstate)
                 for ntype, nstate in node_state.items()
             }
+        else:
+            node_state_scaled = node_state
         return node_state, node_state_scaled
 
     def generate_actions(

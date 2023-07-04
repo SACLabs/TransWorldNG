@@ -125,7 +125,7 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     data_dir = exp_setting / "data" / test_data
     train_data_dir = data_dir  / "train_data"
     test_data_dir = data_dir / "test_data"
-    out_dir = data_dir / f"out_dim_{hid_dim}_n_heads_{n_heads}_n_layer_{n_layer}_pred_step_{pred_step}"
+    out_dir = data_dir / 'pretrain' / f"out_dim_{hid_dim}_n_heads_{n_heads}_n_layer_{n_layer}_pred_step_{pred_step}"
     name = f"scenario_{scenario}test_data_{test_data}_dim_{hid_dim}_n_heads_{n_heads}_n_layer_{n_layer}"
     log_folder_path = out_dir / "Log"
     logger = setup_logger(name, log_folder_path)
@@ -161,8 +161,8 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     #test_struc, test_feat, node_id_dict, scalers =  load_graph(test_data_dir)
     logger.info(f"========= finish load graph =========")
     #model parameters
-    n_epochs = 1 #200
-    batch_size = max(4,training_step//10 - 10) #100
+    n_epochs = 100 #200
+    batch_size = max(4,training_step//10 - 30) #100
     num_workers = 1
     batch_size = max(1, batch_size * num_workers)
     lr = 5e-4
@@ -224,7 +224,7 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     # loss_df = pd.DataFrame.from_dict(dict(loss_dict))
     loss_df.to_csv(out_dir / 'loss.csv', index=False)
     
-    torch.save(encoder.state_dict(), out_dir / 'encorder.pth')
+    torch.save(encoder.state_dict(), out_dir / 'encoder.pth')
     torch.save(generator.state_dict(), out_dir / 'generator.pth')
     
     before = datetime.now()
@@ -254,8 +254,8 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
 if __name__ =="__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--scenario", type=str, default='traci_tls')
-    parser.add_argument("--train_data", type=str, default='run1')
-    parser.add_argument("--training_step", type=int, default=80)
+    parser.add_argument("--train_data", type=str, default='test1000')
+    parser.add_argument("--training_step", type=int, default=100)
     parser.add_argument("--pred_step", type=int, default=10)
     parser.add_argument("--hid_dim", type=int, default=100)
     parser.add_argument("--n_head", type=int, default=4)

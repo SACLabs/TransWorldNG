@@ -1,19 +1,55 @@
-2023-06-28 08:35:06,036,36,INFO,scenario_HighDtest_data_highway01_dim_50_n_heads_4_n_layer_4::========== process HighD_highway01_50_4_4_pred_step_10  is running! ===========
-2023-06-28 08:35:06,302,302,INFO,scenario_HighDtest_data_highway01_dim_50_n_heads_4_n_layer_4::========== finish load route and depart ========
-      height  width       x  ...      y  yAcceleration  yVelocity
-0       1.92   4.75  344.47  ...  26.07           0.07       0.05
-1       1.92   4.75  345.79  ...  26.07           0.06       0.05
-2       1.92   4.75  347.11  ...  26.07           0.06       0.06
-3       1.92   4.75  348.42  ...  26.07           0.06       0.06
-4       1.92   4.75  349.74  ...  26.07           0.06       0.06
-...      ...    ...     ...  ...    ...            ...        ...
-8309    2.02   4.55    4.89  ...  21.91           0.01      -0.18
-8310    2.02   4.55    6.42  ...  21.90           0.01      -0.18
-8311    2.02   4.55    7.98  ...  21.89           0.01      -0.18
-8312    2.02   4.55    9.56  ...  21.88           0.02      -0.18
-8313    2.02   4.55   11.16  ...  21.87           0.02      -0.18
+2023-07-03 09:57:10,209,209,INFO,scenario_HighDtest_data_highway02_dim_50_n_heads_4_n_layer_4::========== process HighD_highway02_50_4_4_pred_step_10  is running! ===========
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1087, in emit
+    self.flush()
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1067, in flush
+    self.stream.flush()
+OSError: [Errno 95] Operation not supported
+Call stack:
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 290, in <module>
+    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device, args.pretrain_model_path)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 157, in run
+    logger.info(f"========== finish load route and depart ========")
+Message: '========== finish load route and depart ========'
+Arguments: ()
+2023-07-03 09:57:10,496,496,INFO,scenario_HighDtest_data_highway02_dim_50_n_heads_4_n_layer_4::========== finish load route and depart ========
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1087, in emit
+    self.flush()
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1067, in flush
+    self.stream.flush()
+OSError: [Errno 95] Operation not supported
+Call stack:
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 290, in <module>
+    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device, args.pretrain_model_path)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 162, in run
+    logger.info(f"========= finish load graph =========")
+Message: '========= finish load graph ========='
+Arguments: ()
+       height  width       x  ...      y  yAcceleration  yVelocity
+0        2.50  19.81  413.22  ...  25.65           0.04       0.16
+1        2.50  12.13  363.67  ...  25.21           0.02       0.09
+2        2.50  12.13  364.56  ...  25.21           0.02       0.09
+3        2.50  12.13  365.46  ...  25.22           0.02       0.09
+4        2.50  12.13  366.37  ...  25.22           0.02       0.09
+...       ...    ...     ...  ...    ...            ...        ...
+15255    2.22   4.45  322.61  ...   9.45           0.03       0.03
+15256    2.22   4.45  321.40  ...   9.45           0.03       0.03
+15257    2.22   4.45  320.18  ...   9.45           0.03       0.03
+15258    2.22   4.45  318.96  ...   9.45           0.03       0.03
+15259    2.22   4.45  317.74  ...   9.45           0.03       0.03
 
-[5937 rows x 8 columns]
+[13436 rows x 8 columns]
 feat_veh height
 feat_veh width
 feat_veh x
@@ -26,59 +62,192 @@ feat_lane speed_avg
 feat_lane width
 feat_lane x
 feat_lane y
-2023-06-28 08:35:08,833,833,INFO,scenario_HighDtest_data_highway01_dim_50_n_heads_4_n_layer_4::========= finish load graph =========
-2023-06-28 08:35:14,591,591,INFO,scenario_HighDtest_data_highway01_dim_50_n_heads_4_n_layer_4::========= 10_50_1 =========
-2023-06-28 08:35:15,557,557,INFO,scenario_HighDtest_data_highway01_dim_50_n_heads_4_n_layer_4::========== finish generate generator rule ==========
-
-  0%|          | 0/10 [00:00<?, ?it/s]2023-06-28 08:35:15,560,560,INFO,scenario_HighDtest_data_highway01_dim_50_n_heads_4_n_layer_4::--------- current ep is 0 --------
-2023-06-28 08:35:15,562,562,INFO,scenario_HighDtest_data_highway01_dim_50_n_heads_4_n_layer_4::========= start generate dataset =======
-2023-06-28 08:35:15,565,565,INFO,scenario_HighDtest_data_highway01_dim_50_n_heads_4_n_layer_4::========== finish generate dataset =======
-2023-06-28 08:35:15,568,568,INFO,scenario_HighDtest_data_highway01_dim_50_n_heads_4_n_layer_4::========= start training =======
-
-  0%|          | 0/10 [00:17<?, ?it/s]
+2023-07-03 09:57:15,899,899,INFO,scenario_HighDtest_data_highway02_dim_50_n_heads_4_n_layer_4::========= finish load graph =========
+--- Logging error ---
 Traceback (most recent call last):
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1087, in emit
+    self.flush()
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1067, in flush
+    self.stream.flush()
+OSError: [Errno 95] Operation not supported
+Call stack:
   File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 197, in _run_module_as_main
     return _run_code(code, main_globals, None,
   File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 87, in _run_code
     exec(code, run_globals)
-  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 272, in <module>
-    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device)
-  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 213, in run
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 290, in <module>
+    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device, args.pretrain_model_path)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 176, in run
+    logger.info(f"========= {n_epochs}_{batch_size}_{num_workers} =========")
+Message: '========= 10_500_1 ========='
+Arguments: ()
+2023-07-03 09:57:31,091,91,INFO,scenario_HighDtest_data_highway02_dim_50_n_heads_4_n_layer_4::========= 10_500_1 =========
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1087, in emit
+    self.flush()
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1067, in flush
+    self.stream.flush()
+OSError: [Errno 95] Operation not supported
+Call stack:
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 290, in <module>
+    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device, args.pretrain_model_path)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 204, in run
+    logger.info("========== finish generate generator rule ==========")
+Message: '========== finish generate generator rule =========='
+Arguments: ()
+2023-07-03 09:57:31,951,951,INFO,scenario_HighDtest_data_highway02_dim_50_n_heads_4_n_layer_4::========== finish generate generator rule ==========
+  0%|          | 0/10 [00:00<?, ?it/s]--- Logging error ---
+Traceback (most recent call last):
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1087, in emit
+    self.flush()
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1067, in flush
+    self.stream.flush()
+OSError: [Errno 95] Operation not supported
+Call stack:
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 290, in <module>
+    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device, args.pretrain_model_path)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 229, in run
+    logger.info(f"--------- current ep is {ep} --------")
+Message: '--------- current ep is 0 --------'
+Arguments: ()
+2023-07-03 09:57:31,977,977,INFO,scenario_HighDtest_data_highway02_dim_50_n_heads_4_n_layer_4::--------- current ep is 0 --------
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1087, in emit
+    self.flush()
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1067, in flush
+    self.stream.flush()
+OSError: [Errno 95] Operation not supported
+Call stack:
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 290, in <module>
+    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device, args.pretrain_model_path)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 230, in run
     loss_lst = train(timestamps, graph, batch_size, num_workers, encoder, generator, veh_route, loss_fcn, optimizer, logger, device)
-  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 56, in train
-    actions, pred_graph = generator([seed_node_n_time], cur_graph, node_repr, veh_route)
-  File "/home/pai/envs/tsim_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/game/model/generator.py", line 177, in forward
-    node_states, actions = self.generate_actions_and_state(
-  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/game/model/generator.py", line 132, in generate_actions_and_state
-    node_states, node_state_scaled = self.generate_state(node_repr)
-  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/game/model/generator.py", line 152, in generate_state
-    return node_state, node_state_scaled
-UnboundLocalError: local variable 'node_state_scaled' referenced before assignment
-2023-06-28 08:53:15,731,731,INFO,scenario_bologna_cleantest_data_test500_dim_50_n_heads_4_n_layer_4::========== process bologna_clean_test500_50_4_4_pred_step_10  is running! ===========
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 35, in train
+    logger.info("========= start generate dataset =======")
+Message: '========= start generate dataset ======='
+Arguments: ()
+2023-07-03 09:57:31,998,998,INFO,scenario_HighDtest_data_highway02_dim_50_n_heads_4_n_layer_4::========= start generate dataset =======
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1087, in emit
+    self.flush()
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1067, in flush
+    self.stream.flush()
+OSError: [Errno 95] Operation not supported
+Call stack:
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 290, in <module>
+    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device, args.pretrain_model_path)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 230, in run
+    loss_lst = train(timestamps, graph, batch_size, num_workers, encoder, generator, veh_route, loss_fcn, optimizer, logger, device)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 38, in train
+    logger.info("========== finish generate dataset =======")
+Message: '========== finish generate dataset ======='
+Arguments: ()
+2023-07-03 09:57:32,020,20,INFO,scenario_HighDtest_data_highway02_dim_50_n_heads_4_n_layer_4::========== finish generate dataset =======
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1087, in emit
+    self.flush()
+  File "/home/pai/envs/tsim_env/lib/python3.9/logging/__init__.py", line 1067, in flush
+    self.stream.flush()
+OSError: [Errno 95] Operation not supported
+Call stack:
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 290, in <module>
+    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device, args.pretrain_model_path)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 230, in run
+    loss_lst = train(timestamps, graph, batch_size, num_workers, encoder, generator, veh_route, loss_fcn, optimizer, logger, device)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 40, in train
+    logger.info("========= start training =======")
+Message: '========= start training ======='
+Arguments: ()
+2023-07-03 09:57:32,041,41,INFO,scenario_HighDtest_data_highway02_dim_50_n_heads_4_n_layer_4::========= start training =======
+  0%|          | 0/10 [00:00<?, ?it/s]
 Traceback (most recent call last):
   File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 197, in _run_module_as_main
     return _run_code(code, main_globals, None,
   File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 87, in _run_code
     exec(code, run_globals)
-  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_exp.py", line 269, in <module>
-    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device)
-  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_exp.py", line 137, in run
-    node_all = pd.read_csv(train_data_dir / "node_all.csv")
-  File "/home/pai/envs/tsim_env/lib/python3.9/site-packages/pandas/util/_decorators.py", line 211, in wrapper
-    return func(*args, **kwargs)
-  File "/home/pai/envs/tsim_env/lib/python3.9/site-packages/pandas/util/_decorators.py", line 331, in wrapper
-    return func(*args, **kwargs)
-  File "/home/pai/envs/tsim_env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 950, in read_csv
-    return _read(filepath_or_buffer, kwds)
-  File "/home/pai/envs/tsim_env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 605, in _read
-    parser = TextFileReader(filepath_or_buffer, **kwds)
-  File "/home/pai/envs/tsim_env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1442, in __init__
-    self._engine = self._make_engine(f, self.engine)
-  File "/home/pai/envs/tsim_env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1735, in _make_engine
-    self.handles = get_handle(
-  File "/home/pai/envs/tsim_env/lib/python3.9/site-packages/pandas/io/common.py", line 856, in get_handle
-    handle = open(
-FileNotFoundError: [Errno 2] No such file or directory: '/mnt/workspace/wangding/Desktop/TransWorldNG/experiment/bologna_clean/data/test500/train_data/node_all.csv'
-/home/pai/envs/tsim_env/bin/python: No module named sumo_exp
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 290, in <module>
+    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device, args.pretrain_model_path)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 230, in run
+    loss_lst = train(timestamps, graph, batch_size, num_workers, encoder, generator, veh_route, loss_fcn, optimizer, logger, device)
+  File "/mnt/workspace/wangding/Desktop/TransWorldNG/transworld/transworld_hd.py", line 42, in train
+    for i, (cur_graphs, next_graphs) in enumerate(train_loader):  # 这里for的是时间戳
+  File "/home/pai/envs/tsim_env/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 444, in __iter__
+    return self._get_iterator()
+  File "/home/pai/envs/tsim_env/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 390, in _get_iterator
+    return _MultiProcessingDataLoaderIter(self)
+  File "/home/pai/envs/tsim_env/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1050, in __init__
+    self._worker_result_queue = multiprocessing_context.Queue()  # type: ignore[var-annotated]
+  File "/home/pai/envs/tsim_env/lib/python3.9/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+  File "/home/pai/envs/tsim_env/lib/python3.9/multiprocessing/queues.py", line 43, in __init__
+    self._rlock = ctx.Lock()
+  File "/home/pai/envs/tsim_env/lib/python3.9/multiprocessing/context.py", line 68, in Lock
+    return Lock(ctx=self.get_context())
+  File "/home/pai/envs/tsim_env/lib/python3.9/multiprocessing/synchronize.py", line 162, in __init__
+    SemLock.__init__(self, SEMAPHORE, 1, 1, ctx=ctx)
+  File "/home/pai/envs/tsim_env/lib/python3.9/multiprocessing/synchronize.py", line 57, in __init__
+    sl = self._semlock = _multiprocessing.SemLock(
+OSError: [Errno 28] No space left on device
+2023-07-04 01:46:11,012,12,INFO,scenario_hangzhoutest_data_test500_dim_50_n_heads_4_n_layer_4::========== process hangzhou_test500_50_4_4_pred_step_10  is running! ===========
+2023-07-04 01:46:18,271,271,INFO,scenario_hangzhoutest_data_test500_dim_50_n_heads_4_n_layer_4::========== finish load route and depart ========
+2023-07-04 01:47:02,576,576,INFO,scenario_hangzhoutest_data_test500_dim_50_n_heads_4_n_layer_4::========= finish load graph =========
+2023-07-04 01:48:15,992,992,INFO,scenario_hangzhoutest_data_test500_dim_50_n_heads_4_n_layer_4::========= 10_20_1 =========
+2023-07-04 01:48:16,915,915,INFO,scenario_hangzhoutest_data_test500_dim_50_n_heads_4_n_layer_4::========== finish generate generator rule ==========
+2023-07-04 01:48:16,939,939,INFO,scenario_hangzhoutest_data_test500_dim_50_n_heads_4_n_layer_4::========== Finish load preTrain model ==========
+  0%|          | 0/10 [00:00<?, ?it/s]2023-07-04 01:48:16,940,940,INFO,scenario_hangzhoutest_data_test500_dim_50_n_heads_4_n_layer_4::--------- current ep is 0 --------
+2023-07-04 01:48:16,943,943,INFO,scenario_hangzhoutest_data_test500_dim_50_n_heads_4_n_layer_4::========= start generate dataset =======
+2023-07-04 01:48:16,947,947,INFO,scenario_hangzhoutest_data_test500_dim_50_n_heads_4_n_layer_4::========== finish generate dataset =======
+2023-07-04 01:48:16,950,950,INFO,scenario_hangzhoutest_data_test500_dim_50_n_heads_4_n_layer_4::========= start training =======
+  0%|          | 0/10 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/pai/envs/tsim_env/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/mnt/data/saclab/wangding/Desktop/TransWorldNG/transworld/transworld_finetune.py", line 280, in <module>
+    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device, args.pretrain_model_path)
+  File "/mnt/data/saclab/wangding/Desktop/TransWorldNG/transworld/transworld_finetune.py", line 228, in run
+    loss_lst = train(timestamps, graph, batch_size, num_workers, encoder, generator, veh_route, loss_fcn, optimizer, logger, device)
+  File "/mnt/data/saclab/wangding/Desktop/TransWorldNG/transworld/transworld_finetune.py", line 40, in train
+    for i, (cur_graphs, next_graphs) in enumerate(train_loader): 
+  File "/home/pai/envs/tsim_env/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 444, in __iter__
+    return self._get_iterator()
+  File "/home/pai/envs/tsim_env/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 390, in _get_iterator
+    return _MultiProcessingDataLoaderIter(self)
+  File "/home/pai/envs/tsim_env/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1050, in __init__
+    self._worker_result_queue = multiprocessing_context.Queue()  # type: ignore[var-annotated]
+  File "/home/pai/envs/tsim_env/lib/python3.9/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+  File "/home/pai/envs/tsim_env/lib/python3.9/multiprocessing/queues.py", line 43, in __init__
+    self._rlock = ctx.Lock()
+  File "/home/pai/envs/tsim_env/lib/python3.9/multiprocessing/context.py", line 68, in Lock
+    return Lock(ctx=self.get_context())
+  File "/home/pai/envs/tsim_env/lib/python3.9/multiprocessing/synchronize.py", line 162, in __init__
+    SemLock.__init__(self, SEMAPHORE, 1, 1, ctx=ctx)
+  File "/home/pai/envs/tsim_env/lib/python3.9/multiprocessing/synchronize.py", line 57, in __init__
+    sl = self._semlock = _multiprocessing.SemLock(
+OSError: [Errno 28] No space left on device

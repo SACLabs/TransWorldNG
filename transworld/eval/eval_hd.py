@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import imageio
 from pathlib import Path
-from graph.load import load_graph
+from graph.load_hd import load_graph
 from eval.eval import load_model_result,unscale_feat
 from graph.process import generate_unique_node_id
 import pandas as pd
@@ -45,14 +45,21 @@ mpl.rc('font',family='Times New Roman')
 #     os.chdir(Path(path_cwd).absolute())
 #     print(os.getcwd())
 
-def load_data(real_data_dir, sumo_dir, transworld_pretrain_dir, transworld_cali_dir, node_name, feat_name, training_step, pred_step):
+def load_data(sumo_dir, transworld_pretrain_dir, transworld_cali_dir, real_data_dir, node_name, feat_name, real_feat_name, training_step, pred_step):
 
     if sumo_dir is not None:
         node_all = pd.read_csv(sumo_dir / "node_all.csv")
         node_id_dict = generate_unique_node_id(node_all)
 
-        sumo_struc_dict, sumo_feat_dict, node_id_dict, scalers = load_graph(sumo_dir, training_step, training_step + pred_step * 10, node_id_dict, scale=True)
-        sumo_feat_dict = unscale_feat(sumo_feat_dict, scalers)
+        # sumo_struc_dict, sumo_feat_dict, node_id_dict, scalers = load_graph(sumo_dir, training_step, training_step + pred_step * 10, node_id_dict, scale=True)
+        # sumo_feat_dict = unscale_feat(sumo_feat_dict, scalers)
+        # sumo_feat = [sumo_feat_dict[node_name][idx][feat_name] for idx in sumo_feat_dict[node_name]]
+        # sumo_feat = torch.cat(sumo_feat, dim=0)
+        # sumo_feat = sumo_feat.numpy()
+
+
+        sumo_struc_dict, sumo_feat_dict, node_id_dict, scalers = load_graph(sumo_dir, 0, 1500, node_id_dict)
+        #sumo_feat_dict = unscale_feat(sumo_feat_dict, scalers)
         sumo_feat = [sumo_feat_dict[node_name][idx][feat_name] for idx in sumo_feat_dict[node_name]]
         sumo_feat = torch.cat(sumo_feat, dim=0)
         sumo_feat = sumo_feat.numpy()
@@ -75,7 +82,7 @@ def load_data(real_data_dir, sumo_dir, transworld_pretrain_dir, transworld_cali_
     
 
     if transworld_finetune_dir is not None:
-        transworld_finetune_feat_dict = load_hddata(transworld_finetune_dir, training_step, pred_step)
+        transworld_finetune_feat_dict = load_model_result(sumo_dir,transworld_finetune_dir, training_step, pred_step)
         transworld_finetune_feat_dict = unscale_feat(transworld_finetune_feat_dict, scalers)
         transworld_finetune_feat = [transworld_finetune_feat_dict[node_name][idx][feat_name] for idx in transworld_finetune_feat_dict[node_name]]
         transworld_finetune_feat= torch.cat(transworld_finetune_feat, dim=0)
@@ -90,12 +97,13 @@ def load_data(real_data_dir, sumo_dir, transworld_pretrain_dir, transworld_cali_
         real_data = pd.read_csv(real_data_dir)
         real_data['frame'] = real_data['frame'].astype(float)
         real_data = real_data[real_data['frame'] > 0]
-        real_data = real_data[real_data['frame'] < 1100]
+        real_data = real_data[real_data['frame'] < 5000]
+        real_feat = real_data[real_feat_name]
 
     # print('load real data')
-    return sumo_feat, transworld_pretrain_feat, transworld_finetune_feat
+    return sumo_feat, transworld_pretrain_feat, transworld_finetune_feat, real_feat
 
-def plot_histogram(sumo_feat, transworld_pretrain_feat, transworld_finetune_feat):
+def plot_histogram(sumo_feat, transworld_pretrain_feat, transworld_finetune_feat, real_feat):
     sns.set(style='whitegrid', palette='dark')
 
     # Extract the desired feature from the sim_feat and real_feat dictionaries for all vehicles
@@ -114,33 +122,42 @@ def plot_histogram(sumo_feat, transworld_pretrain_feat, transworld_finetune_feat
     if transworld_finetune_feat is not None:
         sns.distplot(transworld_finetune_feat, ax=ax, label='Transworld_finetune', hist_kws={'alpha': 0.8}, kde_kws={'linewidth': 3, 'shade': False})
 
+    if real_feat is not None:
+        sns.distplot(real_feat, ax=ax, label='real_feat', hist_kws={'alpha': 0.8}, kde_kws={'linewidth': 3, 'shade': False})
+
     # Add a legend and axis labels
     ax.legend()
     ax.set_xlabel('Velocity')
     ax.set_ylabel('Density')
     ax.set_title('Comparision among Real Data, TransWorld')
-    plt.savefig('histogram_all.png')
+    plt.savefig(exp_dir/ 'transworld' / 'eval' / 'figs' / 'histogram_all.png')
     plt.show()
 
 
 exp_dir = Path(path_cwd).resolve().parent
 # Load data
 
-real_data_dir=None
-sumo_dir = exp_dir / "experiment" / "hangzhou" / "data" / "run1" / "train_data"
-transworld_pretrain_dir = exp_dir / "experiment" / "hangzhou" / "data" / "run1" / "out_dim_50_n_heads_4_n_layer_4_pred_step_10"
-transworld_finetune_dir = transworld_finetune_feat =  None
+# real_data_dir=None
+# sumo_dir = exp_dir / "experiment" / "hangzhou" / "data" / "test500" / "train_data"
+# transworld_pretrain_dir = exp_dir / "experiment" / "hangzhou" / "data" / "test500" / "pretain" /  "out_dim_50_n_heads_4_n_layer_4_pred_step_10"
+# transworld_finetune_dir = exp_dir / "experiment" / "hangzhou" / "data" / "test500" / "finetune" /  "out_dim_50_n_heads_4_n_layer_4_pred_step_10"
+
+real_data_dir=exp_dir / "experiment" / "HighD" / "data" / "highway02" / "02_tracks.csv"
+sumo_dir = exp_dir / "experiment" / "HighD" / "data" / "highway02" / "data"
+transworld_pretrain_dir = exp_dir / "experiment" / "HighD" / "data" / "highway02" / "preTrainModel" /  "out_dim_100_n_heads_4_n_layer_4_pred_step_10"
+transworld_finetune_dir = exp_dir / "experiment" / "HighD" / "data" / "highway02" / "FineTuneModel" /  "out_dim_100_n_heads_4_n_layer_4_pred_step_10"
 
 node_name ="veh"
-feat_name = "speed"
+feat_name = "yVelocity"
+real_feat_name = "yVelocity"
 
 training_step = 50
 pred_step = 10
 
-sumo_feat, transworld_pretrain_feat, transworld_finetune_feat = load_data(real_data_dir, sumo_dir, transworld_pretrain_dir, transworld_finetune_dir, node_name, feat_name, training_step, pred_step)
+sumo_feat, transworld_pretrain_feat, transworld_finetune_feat, real_feat = load_data(sumo_dir, transworld_pretrain_dir, transworld_finetune_dir, real_data_dir, node_name, feat_name, real_feat_name, training_step, pred_step)
 
 # Plot histogram
-plot_histogram(sumo_feat, transworld_pretrain_feat, transworld_finetune_feat)
+plot_histogram(sumo_feat, transworld_pretrain_feat, transworld_finetune_feat, real_feat)
 
 
 

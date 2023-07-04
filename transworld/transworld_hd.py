@@ -123,11 +123,14 @@ def setup_logger(name, log_folder_path, level=logging.DEBUG):
     logger.addHandler(stream_handler)
     return logger
 
-def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer, device):
+def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer, device, pretrain_model_path):
     time_diff = []
     #for test in [1,2,3,4,5]:
 
-    
+    # data_dir = '/mnt/data/saclab/wangding/Desktop/TransWorldNG/experiment'
+    # out_dir_pre = Path('/mnt/data/oss_beijing/wangding/Desktop')
+    # exp_dir = Path(data_dir) /scenario/ "data"
+
     exp_dir = Path(__file__).parent.parent / "experiment" /scenario/"data"
 
     exp_setting = exp_dir / test_data
@@ -136,7 +139,8 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     data_dir = exp_setting / "data" 
     train_data_dir = data_dir 
     #test_data_dir = data_dir / "test_data"
-    out_dir = data_dir / f"out_dim_{hid_dim}_n_heads_{n_heads}_n_layer_{n_layer}_pred_step_{pred_step}"
+    out_dir = exp_setting / 'preTrainModel' / f"out_dim_{hid_dim}_n_heads_{n_heads}_n_layer_{n_layer}_pred_step_{pred_step}"
+    #out_dir = out_dir_pre / 'preTrainModel' / f"out_dim_{hid_dim}_n_heads_{n_heads}_n_layer_{n_layer}_pred_step_{pred_step}"
     name = f"scenario_{scenario}test_data_{test_data}_dim_{hid_dim}_n_heads_{n_heads}_n_layer_{n_layer}"
     log_folder_path = out_dir / "Log"
     logger = setup_logger(name, log_folder_path)
@@ -158,7 +162,7 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     logger.info(f"========= finish load graph =========")
     #model parameters
     n_epochs = 10 #200
-    batch_size = 50 #100
+    batch_size = 500 #100
     num_workers = 1 #10
     batch_size = max(1, batch_size * num_workers)
     lr = 5e-4
@@ -206,6 +210,19 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     
     
     before = datetime.now()
+
+    if pretrain_model_path:
+        # Load pre-trained model
+        encoder_path = Path(os.path.join(pretrain_model_path, 'encoder.pth'))
+        generator_path = Path(os.path.join(pretrain_model_path, 'generator.pth'))
+        
+        print(encoder_path)
+
+        encoder.load_state_dict(torch.load(encoder_path))
+        generator.load_state_dict(torch.load(generator_path))
+
+        logger.info("========== Finish load preTrain model ==========")
+
     
     loss_avg = []
     for ep in tqdm(range(n_epochs)):
@@ -230,7 +247,7 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
 
 
     
-    for i in range(10):
+    for i in range(50):
         logger.info(f"--------- current is {0+pred_step*(i+1), training_step+pred_step*(i+1)} --------")
         sim_graph = eval(graph, batch_size//num_workers, num_workers, encoder, generator, veh_depart, veh_route, changable_feature_names, hetero_feat_dim, logger, device, training_step+pred_step*(i+1), pred_step)
         #print(sim_graph['veh/0@198.0'][0][('veh','phy/to','lane')][2])
@@ -264,9 +281,10 @@ if __name__ =="__main__":
     parser.add_argument("--n_head", type=int, default=4)
     parser.add_argument("--n_layer", type=int, default=4)
     parser.add_argument("--gpu", type=int, default=0)
+    parser.add_argument("--pretrain_model_path", type=str, default=None)
     args = parser.parse_args()
     if (not torch.cuda.is_available()) or (args.gpu == -1):
         device = torch.device("cpu")
     else:
         device = torch.device("cuda",args.gpu)
-    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device)
+    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device, args.pretrain_model_path)

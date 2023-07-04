@@ -1,0 +1,20 @@
+***Starting server on port 38537 ***
+Loading net-file from '/mnt/workspace/wangding/Desktop/TransWorldNG/experiment/bologna_clean/clean.net.xml' ... done (13ms).
+Loading additional-files from '/mnt/workspace/wangding/Desktop/TransWorldNG/experiment/bologna_clean/joined_detectors.add.xml' ... done (42ms).
+Loading additional-files from '/mnt/workspace/wangding/Desktop/TransWorldNG/experiment/bologna_clean/joined_vtypes.add.xml' ... done (1ms).
+Loading additional-files from '/mnt/workspace/wangding/Desktop/TransWorldNG/experiment/bologna_clean/joined_tls.add.xml' ... done (1ms).
+Loading done.
+Simulation version 1.17.0 started with time: 0.00.
+Warning: Vehicle 'Costa_200_548' performs emergency braking on lane 'a77cd_0' with decel=9.00, wished=4.50, severity=1.00, time=1480.00.
+Simulation ended at time: 4633.00
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 3129.46s
+ TraCI-Duration: 3103.97s
+ Real time factor: 1.48045
+ UPS: 1038.001420
+Vehicles: 
+ Inserted: 11000
+ Running: 0
+ Waiting: 0
+

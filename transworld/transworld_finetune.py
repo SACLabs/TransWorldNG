@@ -116,7 +116,7 @@ def setup_logger(name, log_folder_path, level=logging.DEBUG):
     logger.addHandler(stream_handler)
     return logger
 
-def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer, device):
+def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer, device, pretrain_model_path):
     time_diff = []
 
     exp_dir = Path(__file__).parent.parent / "experiment"
@@ -125,7 +125,7 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     data_dir = exp_setting / "data" / test_data
     train_data_dir = data_dir  / "train_data"
     test_data_dir = data_dir / "test_data"
-    out_dir = data_dir / f"out_dim_{hid_dim}_n_heads_{n_heads}_n_layer_{n_layer}_pred_step_{pred_step}"
+    out_dir = data_dir / "finetune" / f"out_dim_{hid_dim}_n_heads_{n_heads}_n_layer_{n_layer}_pred_step_{pred_step}"
     name = f"scenario_{scenario}test_data_{test_data}_dim_{hid_dim}_n_heads_{n_heads}_n_layer_{n_layer}"
     log_folder_path = out_dir / "Log"
     logger = setup_logger(name, log_folder_path)
@@ -161,8 +161,8 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     #test_struc, test_feat, node_id_dict, scalers =  load_graph(test_data_dir)
     logger.info(f"========= finish load graph =========")
     #model parameters
-    n_epochs = 1 #200
-    batch_size = max(4,training_step//10 - 10) #100
+    n_epochs = 10 #200
+    batch_size = 20#max(4,training_step//10 - 20) #100
     num_workers = 1
     batch_size = max(1, batch_size * num_workers)
     lr = 5e-4
@@ -210,7 +210,17 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
 
     optimizer = torch.optim.Adam(list(encoder.parameters())+list(generator.parameters()), lr=lr)
     
-    
+    if pretrain_model_path:
+        # Load pre-trained model
+        encoder_path = Path(os.path.join(pretrain_model_path, 'encoder.pth'))
+        generator_path = Path(os.path.join(pretrain_model_path, 'generator.pth'))
+        
+        #print(encoder_path)
+
+        encoder.load_state_dict(torch.load(encoder_path))
+        generator.load_state_dict(torch.load(generator_path))
+
+        logger.info("========== Finish load preTrain model ==========")
     
     loss_avg = []
     for ep in tqdm(range(n_epochs)):
@@ -224,8 +234,8 @@ def run(scenario, test_data, training_step, pred_step, hid_dim, n_heads, n_layer
     # loss_df = pd.DataFrame.from_dict(dict(loss_dict))
     loss_df.to_csv(out_dir / 'loss.csv', index=False)
     
-    torch.save(encoder.state_dict(), out_dir / 'encorder.pth')
-    torch.save(generator.state_dict(), out_dir / 'generator.pth')
+    torch.save(encoder.state_dict(), out_dir / 'encoder_finetune.pth')
+    torch.save(generator.state_dict(), out_dir / 'generator_finetune.pth')
     
     before = datetime.now()
 
@@ -261,12 +271,13 @@ if __name__ =="__main__":
     parser.add_argument("--n_head", type=int, default=4)
     parser.add_argument("--n_layer", type=int, default=4)
     parser.add_argument("--gpu", type=int, default=0)
+    parser.add_argument("--pretrain_model_path", type=str, default=None)
     args = parser.parse_args()
     if (not torch.cuda.is_available()) or (args.gpu == -1):
         device = torch.device("cpu")
     else:
         device = torch.device("cuda",args.gpu)
-    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device)
+    run(args.scenario,args.train_data, args.training_step, args.pred_step, args.hid_dim, args.n_head, args.n_layer, device, args.pretrain_model_path)
 
 
 
